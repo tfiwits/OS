@@ -12,14 +12,6 @@ typedef struct workBlock{
 	int cc;
 }wB;
 
-		//交换位置
-		void swap(int *a , int *b)
-		{
-		int  tmp  = *a ; 
-		*a = *b ; 
-		*b = tmp  ; 
-
-		}
 
 int main(int argc, char *argv[])
 {
