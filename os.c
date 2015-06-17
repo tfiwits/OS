@@ -11,7 +11,45 @@ typedef struct workBlock{
 	int freeSize;
 	int cc;
 }wB;
+struct node {
+	int workSize;
+	int freeSize;
+	int cc;
+	int addr;
+	struct node *next;
+};
 
+Node* add(Node* top, int item) {
+	Node* newnode;
+
+	newnode = (Node*)malloc(sizeof(Node));
+
+	if (newnode == NULL) {
+		printf("\\n記憶體配置失敗！");
+		exit(1);
+	}
+
+	newnode->data = item;
+	newnode->next = top;
+	top = newnode;
+
+	return top;
+}
+
+Node* delete(Node* top) {
+	Node* tmpnode;
+
+	tmpnode = top;
+	if (tmpnode == NULL) {
+		printf("\\n堆疊已空！");
+		return NULL;
+	}
+
+	top = top->next;
+	free(tmpnode);
+
+	return top;
+}
 
 int main(int argc, char *argv[])
 {
@@ -19,7 +57,7 @@ int main(int argc, char *argv[])
 		srand(time(NULL));
 		randWork = (rand() % 3) + 1;
 		printf("%d\n",randWork);
-		wB workB[randWork*2+1];
+		node workB[randWork*2+1];
 		printf("請輸入工作總數：");
 		scanf("%d",&switchArray);
 		sW workInt[switchArray];
