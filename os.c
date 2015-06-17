@@ -41,7 +41,7 @@ Node* delete(Node* top) {
 
 	tmpnode = top;
 	if (tmpnode == NULL) {
-		printf("\\n堆疊已空！");
+		printf("n堆疊已空！");
 		return NULL;
 	}
 
