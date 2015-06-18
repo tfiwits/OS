@@ -19,7 +19,6 @@ typedef struct node {
 	struct node *left;
 	struct node *right;
 }node;
-
 node* add(node* top, int item) {
 	node* newnode;
 
@@ -31,13 +30,12 @@ node* add(node* top, int item) {
 	}
 
 	newnode->freeSize = item;
-	/*printf("%d\n",newnode->freeSize);*/
+	printf("fun%d\n",newnode->freeSize);
 	newnode->left = top;
 	newnode->right = top->right;
-	/*top->right->left = newnode;*/
 	top->right = newnode;
-
 	return newnode;
+
 }
 
 /*node* delete(node* top) {*/
@@ -58,8 +56,9 @@ node* add(node* top, int item) {
 void PrintList(node *head)
 {
 	node *p=head;
-	for(p=p->right;p!=head;p=p->right)
-		printf("%d ",p->freeSize);
+	printf("顯示");
+	for(p;p->left!=0;p=p->left)
+		printf("%d\n",p->freeSize);
 }
 
 int main(int argc, char *argv[])
@@ -70,6 +69,8 @@ int main(int argc, char *argv[])
 		printf("%d\n",randWork);
 		node* workB;
 		workB = (node*)malloc(sizeof(node));
+		workB->left = 0;
+		workB->right = 0;
 		printf("請輸入工作總數：");
 		scanf("%d",&switchArray);
 		sW workInt[switchArray];
@@ -86,11 +87,15 @@ int main(int argc, char *argv[])
 				/*workB.workSize = 0;*/
 				/*workB.cc = 0;*/
 		/*}*/
-		for (int i = 0; i < randWork * 2; ++i)
+		for (int i = 0; i < randWork ; ++i)
 		{
 			randFull = (switchMerroy - switchOSSize) / randWork;
-			workB = add(workB,(rand() % randFull) + 1);
+			randWorkSize = (rand() % randFull) + 1;
+			printf("rand%d\n",randWorkSize);
+			workB = add(workB,randWorkSize);
+		printf("%d,%d\n",workB->freeSize,(randFull - randWorkSize));
 			workB = add(workB,(randFull - workB->freeSize));
+		printf("%d\n",workB->freeSize);
 			/*workCount += workB[i].freeSize + workB[i*2].freeSize;*/
 		}
 		/*printf("%d ",workB->freeSize);*/
